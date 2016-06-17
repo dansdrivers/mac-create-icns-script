@@ -41,9 +41,12 @@ done
 
 # Make an output directory if it does not exist, or if the destination was blank.
 if [ ! -d "$DEST" ]; then
-	echo " ! Error: $DEST directory could not be found. Using /tmp output instead"
-	DEST="/tmp/${IMG}.iconset"
-	mkdir "$DEST" 
+	echo " ! Error: $DEST directory could not be found. Using ./applet.iconset output instead"
+	DEST="./applet.iconset"
+	if [ ! -d "$DEST" ]; then
+		mkdir "$DEST"
+	fi
+	rm -f "$DEST/.*"
 fi
 
 echo -e "Img: $IMG\nDest: $DEST"
